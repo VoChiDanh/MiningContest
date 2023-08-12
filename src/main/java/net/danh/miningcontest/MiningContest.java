@@ -5,6 +5,7 @@ import net.danh.miningcontest.Contest.Mining;
 import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Listener.BlockBreak;
 import net.danh.miningcontest.Listener.JoinQuit;
+import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
 import net.xconfig.bukkit.model.SimpleConfigurationManager;
 import org.bukkit.Bukkit;
@@ -14,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public final class MiningContest extends JavaPlugin {
     private static MiningContest miningContest;
@@ -40,9 +42,13 @@ public final class MiningContest extends JavaPlugin {
                     if (!Mining.data.get("start")) {
                         Mining.StartMining();
                     }
+                } else {
+                    Bukkit.getServer().broadcastMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_cancel"))
+                            .replace("#min#", String.valueOf(FileManager.getConfig().getInt("min_player")))
+                            .replace("#online#", String.valueOf(Bukkit.getOnlinePlayers().size()))));
                 }
             }
-        }).runTaskTimer(this, FileManager.getConfig().getInt("settings.contest_delay") * 20L, FileManager.getConfig().getInt("settings.contest_delay") * 20L);
+        }).runTaskTimer(miningContest, FileManager.getConfig().getInt("settings.contest_delay") * 20L, FileManager.getConfig().getInt("settings.contest_delay") * 20L);
     }
 
     @Override

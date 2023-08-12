@@ -7,6 +7,7 @@ message:
   contest_not_start: "&cCuộc thi chưa bắt đầu"
   contest_already_start: "&cCuộc thi đã bắt đầu"
   contest_warning: "&6Bạn cần đào ít nhất #block# điểm để được nhận quà"
+  contest_cancel: "&bCuộc thi đào khối đã bị hủy bỏ vì không đủ người chơi (Yêu cầu ít nhất #min# người chơi, hiện tại đang có #online# người chơi)"
 settings:
   contest_times: 900
   contest_delay: 7200
