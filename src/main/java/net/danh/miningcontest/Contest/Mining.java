@@ -50,14 +50,12 @@ public class Mining {
                                 p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
                                 List<String> player = new ArrayList<>(sortedMap.keySet());
                                 boolean ontop = false;
-                                if (player.size() >= 3) {
-                                    for (int i = 0; i < 3; i++) {
-                                        if (player.get(i) != null) {
-                                            if (player.get(i).equalsIgnoreCase(s)) {
-                                                ontop = true;
-                                                List<String> cmd = FileManager.getConfig().getStringList("reward.top.top" + (i + 1)).stream().map(s1 -> s1.replace("#player#", s)).collect(Collectors.toList());
-                                                cmd.forEach(c -> MiningContest.getMiningContest().getServer().dispatchCommand(Bukkit.getConsoleSender(), c));
-                                            }
+                                for (int i = 0; i < 3; i++) {
+                                    if (player.get(i) != null) {
+                                        if (player.get(i).equalsIgnoreCase(s)) {
+                                            ontop = true;
+                                            List<String> cmd = FileManager.getConfig().getStringList("reward.top.top" + (i + 1)).stream().map(s1 -> s1.replace("#player#", s)).collect(Collectors.toList());
+                                            cmd.forEach(c -> MiningContest.getMiningContest().getServer().dispatchCommand(Bukkit.getConsoleSender(), c));
                                         }
                                     }
                                 }
