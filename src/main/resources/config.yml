@@ -26,6 +26,7 @@ points:
   EMERALD_ORE: 12
   OBSIDIAN: 14
 limit_blocks: 200
+min_player: 5
 reward:
   top:
     top1:

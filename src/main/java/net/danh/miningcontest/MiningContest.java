@@ -36,7 +36,7 @@ public final class MiningContest extends JavaPlugin {
         Mining.data.put("end", false);
         (new BukkitRunnable() {
             public void run() {
-                if (getServer().getOnlinePlayers().size() >= 5) {
+                if (getServer().getOnlinePlayers().size() >= FileManager.getConfig().getInt("min_player")) {
                     if (!Mining.data.get("start")) {
                         Mining.StartMining();
                     }
