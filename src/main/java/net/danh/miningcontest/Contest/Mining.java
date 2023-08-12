@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class Mining {
 
     public static HashMap<String, Boolean> data = new HashMap<>();
+    public static HashMap<String, Integer> dataI = new HashMap<>();
 
     public static void setCancelled(boolean cancelled) {
         data.replace("end", cancelled);
@@ -27,6 +28,7 @@ public class Mining {
         for (Player p : MiningContest.getMiningContest().getServer().getOnlinePlayers()) {
             PlayerData.points.put(p.getName(), 0);
         }
+        dataI.replace("end", FileManager.getConfig().getInt("settings.contest_times"));
         (new BukkitRunnable() {
             int counter = FileManager.getConfig().getInt("settings.contest_times");
 
@@ -42,6 +44,7 @@ public class Mining {
                             }
                         }.runTask(MiningContest.getMiningContest());
                     }
+                    dataI.replace("end", 0);
                     Map<String, Integer> sortedMap = PlayerData.points.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
                     sortedMap.forEach((s, integer) -> {
                         if (integer >= FileManager.getConfig().getInt("limit_blocks")) {
@@ -89,6 +92,7 @@ public class Mining {
                             }
                         }.runTask(MiningContest.getMiningContest());
                     }
+                    dataI.replace("end", 0);
                     Map<String, Integer> sortedMap = PlayerData.points.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
                     sortedMap.forEach((s, integer) -> {
                         if (integer >= FileManager.getConfig().getInt("limit_blocks")) {

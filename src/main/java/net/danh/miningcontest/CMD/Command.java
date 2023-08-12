@@ -5,6 +5,7 @@ import net.danh.miningcontest.Contest.Mining;
 import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
+import net.danh.miningcontest.MiningContest;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
 
@@ -12,14 +13,30 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static net.danh.miningcontest.Contest.Mining.data;
+import static net.danh.miningcontest.Contest.Mining.dataI;
 
 public class Command extends CMDBase {
     public Command() {
         super("MiningContest");
     }
 
+    private void checkTimes(CommandSender c) {
+        String start = ChatManager.colorize(FileManager.getConfig().getString("message.contest_start_time"));
+        String end = ChatManager.colorize(FileManager.getConfig().getString("message.contest_end_time"));
+        if (data.get("start") && (dataI.get("end") > 0)) {
+            c.sendMessage(end
+                    .replace("#time#", MiningContest.getTime(dataI.get("end"))));
+        } else {
+            c.sendMessage(start
+                    .replace("#time#", MiningContest.getTime(dataI.get("start"))));
+        }
+    }
+
     @Override
     public void execute(CommandSender c, String[] args) {
+        if (args.length == 0) {
+            checkTimes(c);
+        }
         if (args.length == 1) {
             if (c.hasPermission("mc.admin")) {
                 if (args[0].equalsIgnoreCase("reload")) {
@@ -48,8 +65,10 @@ public class Command extends CMDBase {
                     c.sendMessage(ChatManager.colorize("&7"));
                     c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_warning"))
                             .replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks"))));
+                    checkTimes(c);
                 } else {
                     c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_not_start")));
+                    checkTimes(c);
                 }
             }
         }

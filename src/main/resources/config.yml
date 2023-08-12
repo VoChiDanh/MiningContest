@@ -7,6 +7,8 @@ message:
   contest_not_start: "&cCuộc thi chưa bắt đầu"
   contest_already_start: "&cCuộc thi đã bắt đầu"
   contest_warning: "&6Bạn cần đào ít nhất #block# điểm để được nhận quà"
+  contest_start_time: "&aCuộc thi sẽ bắt đầu sau #time#"
+  contest_end_time: "&aCuộc thi sẽ kết thúc sau #time#"
   contest_cancel: "&bCuộc thi đào khối đã bị hủy bỏ vì không đủ người chơi (Yêu cầu ít nhất #min# người chơi, hiện tại đang có #online# người chơi)"
 settings:
   contest_times: 900
@@ -41,3 +43,8 @@ reward:
       - "mi give MATERIAL NETHERITE_INGOT #player# 32 0 100 0 silent"
     others:
       - "money give #player# 10000"
+times:
+  day: "ngày"
+  hour: "giờ"
+  minute: "phút"
+  second: "giây"
