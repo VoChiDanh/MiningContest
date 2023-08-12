@@ -25,6 +25,28 @@ public final class MiningContest extends JavaPlugin {
         return miningContest;
     }
 
+    public static String getTime(int secondsx) {
+        int days = (int) TimeUnit.SECONDS.toDays(secondsx);
+        int hours = (int) (TimeUnit.SECONDS.toHours(secondsx) - TimeUnit.DAYS.toHours(days));
+        int minutes = (int) (TimeUnit.SECONDS.toMinutes(secondsx) - TimeUnit.HOURS.toMinutes(hours) - TimeUnit.DAYS.toMinutes(days));
+        int seconds = (int) (TimeUnit.SECONDS.toSeconds(secondsx) - TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.DAYS.toSeconds(days));
+
+        if (days != 0) {
+            return days + " " + FileManager.getConfig().getString("times.day") + " " + hours + " " + FileManager.getConfig().getString("times.hour") + " " + minutes + " " + FileManager.getConfig().getString("times.minute") + " " + seconds + " " + FileManager.getConfig().getString("times.second");
+        } else {
+            if (hours != 0) {
+                return hours + " " + FileManager.getConfig().getString("times.hour") + " " + minutes + " " + FileManager.getConfig().getString("times.minute") + " " + seconds + " " + FileManager.getConfig().getString("times.second");
+            } else {
+                if (minutes != 0) {
+                    return minutes + " " + FileManager.getConfig().getString("times.minute") + " " + seconds + " " + FileManager.getConfig().getString("times.second");
+                } else {
+                    return seconds + " " + FileManager.getConfig().getString("times.second");
+                }
+            }
+
+        }
+    }
+
     @Override
     public void onEnable() {
         miningContest = this;
@@ -82,30 +104,7 @@ public final class MiningContest extends JavaPlugin {
         }
     }
 
-
     public void registerEvents(Listener... listeners) {
         Arrays.asList(listeners).forEach(listener -> getServer().getPluginManager().registerEvents(listener, miningContest));
-    }
-
-    public static String getTime(int secondsx) {
-        int days = (int) TimeUnit.SECONDS.toDays(secondsx);
-        int hours = (int) (TimeUnit.SECONDS.toHours(secondsx) - TimeUnit.DAYS.toHours(days));
-        int minutes = (int) (TimeUnit.SECONDS.toMinutes(secondsx) - TimeUnit.HOURS.toMinutes(hours) - TimeUnit.DAYS.toMinutes(days));
-        int seconds = (int) (TimeUnit.SECONDS.toSeconds(secondsx) - TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.DAYS.toSeconds(days));
-
-        if (days != 0) {
-            return days + " " + FileManager.getConfig().getString("times.day") + " " + hours + " " + FileManager.getConfig().getString("times.hour") + " " + minutes + " " + FileManager.getConfig().getString("times.minute") + " " + seconds + " " + FileManager.getConfig().getString("times.second");
-        } else {
-            if (hours != 0) {
-                return hours + " " + FileManager.getConfig().getString("times.hour") + " " + minutes + " " + FileManager.getConfig().getString("times.minute") + " " + seconds + " " + FileManager.getConfig().getString("times.second");
-            } else {
-                if (minutes != 0) {
-                    return minutes + " " + FileManager.getConfig().getString("times.minute") + " " + seconds + " " + FileManager.getConfig().getString("times.second");
-                } else {
-                    return seconds + " " + FileManager.getConfig().getString("times.second");
-                }
-            }
-
-        }
     }
 }

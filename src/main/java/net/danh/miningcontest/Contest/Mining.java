@@ -53,7 +53,8 @@ public class Mining {
                                 p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
                                 List<String> player = new ArrayList<>(sortedMap.keySet());
                                 boolean ontop = false;
-                                for (int i = 0; i < 3; i++) {
+                                int max = Math.min(player.size(), 3);
+                                for (int i = 0; i < max; i++) {
                                     if (player.get(i) != null) {
                                         if (player.get(i).equalsIgnoreCase(s)) {
                                             ontop = true;
@@ -101,7 +102,8 @@ public class Mining {
                                 p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
                                 List<String> player = new ArrayList<>(sortedMap.keySet());
                                 boolean ontop = false;
-                                for (int i = 0; i < 3; i++) {
+                                int max = Math.min(player.size(), 3);
+                                for (int i = 0; i < max; i++) {
                                     if (player.get(i) != null) {
                                         if (player.get(i).equalsIgnoreCase(s)) {
                                             ontop = true;

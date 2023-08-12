@@ -38,6 +38,12 @@ public class Command extends CMDBase {
             checkTimes(c);
         }
         if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("help")) {
+                ChatManager.colorize(FileManager.getConfig().getStringList("help.user")).forEach(c::sendMessage);
+                if (c.hasPermission("mc.admin")) {
+                    ChatManager.colorize(FileManager.getConfig().getStringList("help.admin")).forEach(c::sendMessage);
+                }
+            }
             if (c.hasPermission("mc.admin")) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     FileManager.getFileSetting().reload("config.yml");
@@ -84,6 +90,7 @@ public class Command extends CMDBase {
                 commands.add("start");
                 commands.add("end");
             }
+            commands.add("help");
             commands.add("top");
             StringUtil.copyPartialMatches(args[0], commands, completions);
         }

@@ -48,3 +48,11 @@ times:
   hour: "giờ"
   minute: "phút"
   second: "giây"
+help:
+  admin:
+    - "&a/mc start - Bắt đầu cuộc thi"
+    - "&a/mc end - Kết thức cuộc thi"
+    - "&a/mc reload - Tải lại file"
+  user:
+    - "&a/mc - Xem thông tin của cuộc thi"
+    - "&a/mc top - Xem top của cuộc thi"
