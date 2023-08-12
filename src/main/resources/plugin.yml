@@ -1,0 +1,13 @@
+name: MiningContest
+version: '${project.version}'
+main: net.danh.miningcontest.MiningContest
+api-version: '1.13'
+authors: [ VoChiDanh ]
+softdepend:
+  - WorldGuard
+  - MineRegion
+commands:
+  MiningContest:
+    description: MiningContest Command
+    aliases:
+      - mc

@@ -1,0 +1,41 @@
+message:
+  contest_start: "&bCuộc thi đào khối bắt đầu!"
+  contest_end: "&cCuộc thi đào khối đã kết thúc!"
+  contest_countdown: "&eCuộc thi sẽ kết thúc trong #giay# giây"
+  contest_pre_join: "&eĐang có cuộc thi đào khối đang diễn ra, hãy đi đào block ngay nào!"
+  contest_top: "&aNgười chơi #name# - #block# điểm"
+  contest_not_start: "&cCuộc thi chưa bắt đầu"
+  contest_already_start: "&cCuộc thi đã bắt đầu"
+  contest_warning: "&6Bạn cần đào ít nhất #block# điểm để được nhận quà"
+settings:
+  contest_times: 900
+  contest_delay: 7200
+prefix: "&7[&fMining Contest&7]"
+points:
+  COAL_BLOCK: 2
+  IRON_BLOCK: 3
+  GOLD_BLOCK: 4
+  DIAMOND_BLOCK: 5
+  EMERALD_BLOCK: 6
+  COBBLESTONE: 6
+  STONE: 5
+  COAL_ORE: 4
+  IRON_ORE: 6
+  GOLD_ORE: 8
+  DIAMOND_ORE: 10
+  EMERALD_ORE: 12
+  OBSIDIAN: 14
+limit_blocks: 200
+reward:
+  top:
+    top1:
+      - "money give #player# 5000000"
+      - "mi give MATERIAL NETHERITE_INGOT #player# 128 0 100 0 silent"
+    top2:
+      - "money give #player# 3000000"
+      - "mi give MATERIAL NETHERITE_INGOT #player# 64 0 100 0 silent"
+    top3:
+      - "money give #player# 1000000"
+      - "mi give MATERIAL NETHERITE_INGOT #player# 32 0 100 0 silent"
+    others:
+      - "money give #player# 10000"
