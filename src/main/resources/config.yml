@@ -10,6 +10,7 @@ message:
   contest_start_time: "&aCuộc thi sẽ bắt đầu sau #time#"
   contest_end_time: "&aCuộc thi sẽ kết thúc sau #time#"
   contest_cancel: "&bCuộc thi đào khối đã bị hủy bỏ vì không đủ người chơi (Yêu cầu ít nhất #min# người chơi, hiện tại đang có #online# người chơi)"
+  reload: "&9Đã tải lại file"
 settings:
   contest_times: 900
   contest_delay: 7200

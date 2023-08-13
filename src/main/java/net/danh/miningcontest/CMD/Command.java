@@ -47,6 +47,7 @@ public class Command extends CMDBase {
             if (c.hasPermission("mc.admin")) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     FileManager.getFileSetting().reload("config.yml");
+                    c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.reload")));
                 }
                 if (args[0].equalsIgnoreCase("start")) {
                     if (!data.get("start")) {
