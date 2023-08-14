@@ -62,7 +62,7 @@ help:
     - "&a/mc start - Start the contest"
     - "&a/mc end - End of the contest"
     - "&a/mc reload - Reload the file"
-  # Help commands for admin
+  # Help commands for user
   user:
     - "&a/mc - View contest information"
     - "&a/mc top - See the top of the contest"
