@@ -11,7 +11,7 @@ message:
   contest_end_time: "&aCuộc thi sẽ kết thúc sau #time#"
   contest_cancel: "&bCuộc thi đào khối đã bị hủy bỏ vì không đủ người chơi (Yêu cầu ít nhất #min# người chơi, hiện tại đang có #online# người chơi)"
   reload: "&9Đã tải lại file"
-  contest_self_top: "&6Bạn đang ở top #top# - #block# điểm"
+  contest_self_top: "&2Bạn đang ở top #top# - #block# điểm"
   contest_non_top: "&cBạn không có ở trong top, hãy đào ít nhất #block# điểm để vào top và được nhận quà"
 settings:
   contest_times: 900

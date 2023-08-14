@@ -12,6 +12,7 @@ import org.bukkit.util.StringUtil;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static net.danh.miningcontest.Contest.Mining.data;
@@ -26,11 +27,9 @@ public class Command extends CMDBase {
         String start = ChatManager.colorize(FileManager.getConfig().getString("message.contest_start_time"));
         String end = ChatManager.colorize(FileManager.getConfig().getString("message.contest_end_time"));
         if (data.get("start") && (dataI.get("end") > 0)) {
-            c.sendMessage(end
-                    .replace("#time#", MiningContest.getTime(dataI.get("end"))));
+            c.sendMessage(end.replace("#time#", MiningContest.getTime(dataI.get("end"))));
         } else {
-            c.sendMessage(start
-                    .replace("#time#", MiningContest.getTime(dataI.get("start"))));
+            c.sendMessage(start.replace("#time#", MiningContest.getTime(dataI.get("start"))));
         }
     }
 
@@ -84,14 +83,17 @@ public class Command extends CMDBase {
                     });
                     if (c instanceof Player) {
                         AtomicBoolean ontop = new AtomicBoolean(false);
+                        AtomicInteger top = new AtomicInteger(0);
+                        AtomicInteger block = new AtomicInteger(0);
                         Player p = (Player) c;
                         sortedMap.forEach((s, integer) -> {
                             if (integer >= FileManager.getConfig().getInt("limit_blocks")) {
                                 for (int i = 0; i < player.size(); i++) {
                                     if (player.get(i) != null) {
-                                        if (player.get(i).equalsIgnoreCase(p.getName())) {
+                                        if (player.get(i).equalsIgnoreCase(s) && s.equalsIgnoreCase(p.getName())) {
                                             ontop.set(true);
-                                            p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_self_top")).replace("#top#", String.valueOf(i + 1)).replace("#block#", String.valueOf(integer))));
+                                            top.set(i + 1);
+                                            block.set(integer);
                                         }
                                     }
                                 }
@@ -99,11 +101,12 @@ public class Command extends CMDBase {
                         });
                         if (!ontop.get()) {
                             p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_non_top")).replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks")))));
+                        } else {
+                            p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_self_top")).replace("#top#", String.valueOf(top.get())).replace("#block#", String.valueOf(block.get()))));
                         }
                     }
                     c.sendMessage(ChatManager.colorize("&7"));
-                    c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_warning"))
-                            .replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks"))));
+                    c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_warning")).replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks"))));
                     checkTimes(c);
                 } else {
                     c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_not_start")));
