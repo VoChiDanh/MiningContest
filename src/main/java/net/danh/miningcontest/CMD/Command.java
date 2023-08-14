@@ -104,9 +104,11 @@ public class Command extends CMDBase {
                         } else {
                             p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_self_top")).replace("#top#", String.valueOf(top.get())).replace("#block#", String.valueOf(block.get()))));
                         }
+                        if (block.get() < FileManager.getConfig().getInt("limit_blocks")) {
+                            c.sendMessage(ChatManager.colorize("&7"));
+                            c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_warning")).replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks"))));
+                        }
                     }
-                    c.sendMessage(ChatManager.colorize("&7"));
-                    c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_warning")).replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks"))));
                 } else {
                     c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_not_start")));
                 }
