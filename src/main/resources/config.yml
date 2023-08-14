@@ -1,62 +1,68 @@
 message:
-  contest_start: "&bCuộc thi đào khối bắt đầu!"
-  contest_end: "&cCuộc thi đào khối đã kết thúc!"
-  contest_countdown: "&eCuộc thi sẽ kết thúc trong #giay# giây"
-  contest_pre_join: "&eĐang có cuộc thi đào khối đang diễn ra, hãy đi đào block ngay nào!"
-  contest_top: "&aNgười chơi #name# - #block# điểm"
-  contest_not_start: "&cCuộc thi chưa bắt đầu"
-  contest_already_start: "&cCuộc thi đã bắt đầu"
-  contest_warning: "&6Bạn cần đào ít nhất #block# điểm để được nhận quà"
-  contest_start_time: "&aCuộc thi sẽ bắt đầu sau #time#"
-  contest_end_time: "&aCuộc thi sẽ kết thúc sau #time#"
-  contest_cancel: "&bCuộc thi đào khối đã bị hủy bỏ vì không đủ người chơi (Yêu cầu ít nhất #min# người chơi, hiện tại đang có #online# người chơi)"
-  reload: "&9Đã tải lại file"
-  contest_self_top: "&2Bạn đang ở top #top# - #block# điểm"
-  contest_non_top: "&cBạn không có ở trong top, hãy đào ít nhất #block# điểm để vào top và được nhận quà"
+  contest_start: "&bThe Block Mining Contest Begins!"
+  contest_end: "&cThe block mining contest has ended!"
+  contest_countdown: "&eThe contest will end in #giay# second"
+  contest_pre_join: "&eThere is a block mining contest going on, start mining from now!"
+  contest_top: "&aPlayer #name# - #block# Points"
+  contest_not_start: "&cThe contest hasn't started yet"
+  contest_already_start: "&cThe contest has begun"
+  contest_warning: "&6You need to dig at least #block# points to receive rewards"
+  contest_start_time: "&aContest will start in #time#"
+  contest_end_time: "&aContest will end in #time#"
+  contest_cancel: "&bThe block mining contest has been canceled due to insufficient players (Requires at least #min# players, currently #online# players)"
+  reload: "&9Reloaded the file"
+  contest_self_top: "&2You are at the top #top# - #block# Points"
+  contest_non_top: "&cYou are not in the top, dig at least #block# points to enter the top and receive rewards"
 settings:
+  # Time of the contest (In seconds)
   contest_times: 900
+  # Contest time will automatically take place (In seconds)
   contest_delay: 7200
+  # Number of players currently on the top of the contest (Recommended to leave 3 or 5)
   contest_top_list: 3
+# Plugin's prefix
 prefix: "&7[&fMining Contest&7]"
+# The blocks listed below will be added with the corresponding number of points. For unlisted blocks their score will be +1
 points:
+  #BLOCK_TYPE: POINTS
   COAL_BLOCK: 2
   IRON_BLOCK: 3
   GOLD_BLOCK: 4
   DIAMOND_BLOCK: 5
   EMERALD_BLOCK: 6
-  COBBLESTONE: 6
-  STONE: 5
-  COAL_ORE: 4
-  IRON_ORE: 6
-  GOLD_ORE: 8
-  DIAMOND_ORE: 10
-  EMERALD_ORE: 12
-  OBSIDIAN: 14
+# Number of blocks needed for players to receive rewards and enter to the top of contest
+# (If player hasn't enough of points, player won't enter to the top and won't get any reward)
 limit_blocks: 200
+# Minimum number of players for the contest to start automatically
 min_player: 5
+# Reward for top
 reward:
   top:
+    # Top 1 reward
     top1:
       - "money give #player# 5000000"
-      - "mi give MATERIAL NETHERITE_INGOT #player# 128 0 100 0 silent"
+    # Top 2 reward
     top2:
       - "money give #player# 3000000"
-      - "mi give MATERIAL NETHERITE_INGOT #player# 64 0 100 0 silent"
+    # Top 3 reward
     top3:
       - "money give #player# 1000000"
-      - "mi give MATERIAL NETHERITE_INGOT #player# 32 0 100 0 silent"
+    # Top 4,5,6,.... reward
     others:
-      - "money give #player# 10000"
+      - "money give #player# 500000"
+# Times when /mc
 times:
-  day: "ngày"
-  hour: "giờ"
-  minute: "phút"
-  second: "giây"
+  day: "day(s)"
+  hour: "hour(s)"
+  minute: "minute(s)"
+  second: "second(s)"
 help:
+  # Help commands for admin
   admin:
-    - "&a/mc start - Bắt đầu cuộc thi"
-    - "&a/mc end - Kết thức cuộc thi"
-    - "&a/mc reload - Tải lại file"
+    - "&a/mc start - Start the contest"
+    - "&a/mc end - End of the contest"
+    - "&a/mc reload - Reload the file"
+  # Help commands for admin
   user:
-    - "&a/mc - Xem thông tin của cuộc thi"
-    - "&a/mc top - Xem top của cuộc thi"
+    - "&a/mc - View contest information"
+    - "&a/mc top - See the top of the contest"

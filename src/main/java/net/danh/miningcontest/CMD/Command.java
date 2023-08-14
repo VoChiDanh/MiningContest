@@ -107,10 +107,8 @@ public class Command extends CMDBase {
                     }
                     c.sendMessage(ChatManager.colorize("&7"));
                     c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_warning")).replace("#block#", String.valueOf(FileManager.getConfig().getInt("limit_blocks"))));
-                    checkTimes(c);
                 } else {
                     c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_not_start")));
-                    checkTimes(c);
                 }
             }
         }
