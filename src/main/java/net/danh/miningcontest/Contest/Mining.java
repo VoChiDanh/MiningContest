@@ -71,9 +71,7 @@ public class Mining {
                             }
                         }
                     });
-                    for (Player p : MiningContest.getMiningContest().getServer().getOnlinePlayers()) {
-                        PlayerData.points.put(p.getName(), 0);
-                    }
+                    PlayerData.points.replaceAll((p, v) -> 0);
                     data.put("start", false);
                 }
                 counter--;
@@ -119,9 +117,7 @@ public class Mining {
                             }
                         }
                     });
-                    for (Player p : MiningContest.getMiningContest().getServer().getOnlinePlayers()) {
-                        PlayerData.points.put(p.getName(), 0);
-                    }
+                    PlayerData.points.replaceAll((p, v) -> 0);
                     data.put("start", false);
                 }
             }
