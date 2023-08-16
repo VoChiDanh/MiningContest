@@ -10,9 +10,12 @@ message:
   contest_start_time: "&aContest will start in #time#"
   contest_end_time: "&aContest will end in #time#"
   contest_cancel: "&bThe block mining contest has been canceled due to insufficient players (Requires at least #min# players, currently #online# players)"
-  reload: "&9Reloaded the file"
   contest_self_top: "&2You are at the top #top# - #block# Points"
   contest_non_top: "&cYou are not in the top, dig at least #block# points to enter the top and receive rewards"
+  reload: "&9Reloaded the file"
+  add_points: "&2Added #points# to #player#"
+  remove_points: "&2Removed #points# from #player#"
+  reset_points: "&2Reset all points from #player#"
 settings:
   # Time of the contest (In seconds)
   contest_times: 900
@@ -62,7 +65,15 @@ help:
     - "&a/mc start - Start the contest"
     - "&a/mc end - End of the contest"
     - "&a/mc reload - Reload the file"
+    - "&a/mc add <player> <points> [s] - Add points to player when contest started"
+    - "&a/mc remove <player> <points> [s] - Remove points from player when contest started"
+    - "&a/mc reset <player> - Reset all points from player"
+    - "&cWhat is [s] ? If you execute command like this way: "
+    - "&b/mc add Danh 1000 s -> Command will execute in silent and do not give any message"
+    - "&b/mc add Danh 1000 -> Command will execute in public and give message to admin"
   # Help commands for user
   user:
     - "&a/mc - View contest information"
     - "&a/mc top - See the top of the contest"
+# Config version / DO NOT CHANGE IT
+version: 1

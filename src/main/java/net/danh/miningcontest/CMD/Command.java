@@ -5,8 +5,11 @@ import net.danh.miningcontest.Contest.Mining;
 import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
+import net.danh.miningcontest.Manager.NumberManager;
 import net.danh.miningcontest.MiningContest;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
@@ -37,6 +40,55 @@ public class Command extends CMDBase {
     public void execute(CommandSender c, String[] args) {
         if (args.length == 0) {
             checkTimes(c);
+        }
+        if (args.length >= 3 && args.length <= 4) {
+            if (c.hasPermission("mc.admin")) {
+                Player p = Bukkit.getPlayer(args[1]);
+                if (p != null) {
+                    int amount = NumberManager.getInteger(args[2]);
+                    if (amount > 0) {
+                        if (data.get("start")) {
+                            if (args[0].equalsIgnoreCase("add")) {
+                                PlayerData.points.replace(p.getName(), PlayerData.points.get(p.getName()) + amount);
+                                if (args[3].isEmpty() || !args[3].equalsIgnoreCase("s")) {
+                                    c.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.add_points"))
+                                            .replace("#points#", String.valueOf(amount))
+                                            .replace("#player#", p.getName())));
+                                }
+                            }
+                            if (args[0].equalsIgnoreCase("remove")) {
+                                int new_int = PlayerData.points.get(p.getName()) - amount;
+                                if (new_int >= 0) {
+                                    PlayerData.points.replace(p.getName(), new_int);
+                                    if (args[3].isEmpty() || !args[3].equalsIgnoreCase("s")) {
+                                        c.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.remove_points"))
+                                                .replace("#points#", String.valueOf(amount))
+                                                .replace("#player#", p.getName())));
+                                    }
+                                }
+                            }
+                        } else {
+                            c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_not_start")));
+                        }
+                    }
+                }
+            }
+        }
+        if (args.length == 2) {
+            if (c.hasPermission("mc.admin")) {
+                Player p = Bukkit.getPlayer(args[1]);
+                if (p != null) {
+                    if (args[0].equalsIgnoreCase("reset")) {
+                        if (data.get("start")) {
+                            PlayerData.points.replace(p.getName(), 0);
+                            c.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.reset_points"))
+                                    .replace("#player#", p.getName())));
+                        } else {
+                            c.sendMessage(ChatManager.colorize(FileManager.getConfig().getString("message.contest_not_start")));
+                        }
+                    }
+                }
+            }
         }
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("help")) {
@@ -125,10 +177,31 @@ public class Command extends CMDBase {
                 commands.add("reload");
                 commands.add("start");
                 commands.add("end");
+                commands.add("add");
             }
             commands.add("help");
             commands.add("top");
             StringUtil.copyPartialMatches(args[0], commands, completions);
+        }
+        if (args.length == 2) {
+            if (sender.hasPermission("mc.admin")) {
+                if (args[0].equalsIgnoreCase("add")) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        commands.add(player.getName());
+                    }
+                }
+            }
+            StringUtil.copyPartialMatches(args[1], commands, completions);
+        }
+        if (args.length == 3) {
+            if (sender.hasPermission("mc.admin")) {
+                if (args[0].equalsIgnoreCase("add")) {
+                    if (Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName).collect(Collectors.toList()).contains(args[1])) {
+                        commands.add("<number>");
+                    }
+                }
+            }
+            StringUtil.copyPartialMatches(args[2], commands, completions);
         }
         Collections.sort(completions);
         return completions;

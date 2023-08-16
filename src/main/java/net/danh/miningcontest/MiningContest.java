@@ -61,6 +61,7 @@ public final class MiningContest extends JavaPlugin {
         Mining.data.put("end", false);
         Mining.dataI.put("start", FileManager.getConfig().getInt("settings.contest_delay"));
         Mining.dataI.put("end", 0);
+        FileManager.updateConfig();
         (new BukkitRunnable() {
             public void run() {
                 int start;
