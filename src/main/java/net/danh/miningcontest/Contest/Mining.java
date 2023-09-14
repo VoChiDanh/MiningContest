@@ -50,7 +50,7 @@ public class Mining {
                         if (integer >= FileManager.getConfig().getInt("limit_blocks")) {
                             Player p = Bukkit.getPlayer(s);
                             if (p != null) {
-                                p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
+                                MiningContest.getMiningContest().getServer().broadcastMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
                                 List<String> player = new ArrayList<>(sortedMap.keySet());
                                 boolean ontop = false;
                                 for (int i = 0; i < Math.min(player.size(), FileManager.getConfig().getInt("settings.contest_top_list")); i++) {
@@ -96,7 +96,7 @@ public class Mining {
                         if (integer >= FileManager.getConfig().getInt("limit_blocks")) {
                             Player p = Bukkit.getPlayer(s);
                             if (p != null) {
-                                p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
+                                MiningContest.getMiningContest().getServer().broadcastMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_top")).replace("#name#", s).replace("#block#", String.valueOf(integer))));
                                 List<String> player = new ArrayList<>(sortedMap.keySet());
                                 boolean ontop = false;
                                 for (int i = 0; i < Math.min(player.size(), FileManager.getConfig().getInt("settings.contest_top_list")); i++) {
