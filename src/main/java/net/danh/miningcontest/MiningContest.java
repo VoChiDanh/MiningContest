@@ -4,6 +4,7 @@ import net.danh.miningcontest.CMD.Command;
 import net.danh.miningcontest.Contest.Mining;
 import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Listener.BlockBreak;
+import net.danh.miningcontest.Listener.BlockPlace;
 import net.danh.miningcontest.Listener.JoinQuit;
 import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
@@ -52,7 +53,7 @@ public final class MiningContest extends JavaPlugin {
         miningContest = this;
         SimpleConfigurationManager.register(miningContest);
         FileManager.loadFiles();
-        registerEvents(new BlockBreak(), new JoinQuit());
+        registerEvents(new BlockBreak(), new JoinQuit(), new BlockPlace());
         new Command();
         for (Player p : Bukkit.getOnlinePlayers()) {
             PlayerData.points.put(p.getName(), 0);

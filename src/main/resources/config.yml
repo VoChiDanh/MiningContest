@@ -1,3 +1,5 @@
+blacklist_world:
+  - example_world
 message:
   contest_start: "&bThe Block Mining Contest Begins!"
   contest_end: "&cThe block mining contest has ended!"
@@ -76,4 +78,4 @@ help:
     - "&a/mc - View contest information"
     - "&a/mc top - See the top of the contest"
 # Config version / DO NOT CHANGE IT
-version: 1
+version: 2

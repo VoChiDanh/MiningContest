@@ -16,7 +16,7 @@ import java.util.logging.Level;
 
 public class FileManager {
 
-    private static final int config_version = 1;
+    private static final int config_version = 2;
 
     public static SimpleConfigurationManager getFileSetting() {
         return SimpleConfigurationManager.get();
@@ -59,14 +59,21 @@ public class FileManager {
             List<String> default_user_help = defaultConfig.getStringList("help.user");
             List<String> current_admin_help = currentConfig.getStringList("help.admin");
             List<String> current_user_help = currentConfig.getStringList("help.user");
+            List<String> current_blacklist_world = currentConfig.getStringList("blacklist_world");
+            List<String> default_blacklist_world = defaultConfig.getStringList("blacklist_world");
             if (default_admin_help.size() != current_admin_help.size()) {
                 getConfig().set("help.admin", default_admin_help);
+                getFileSetting().save("config.yml");
+            }
+            if (default_blacklist_world.size() != current_blacklist_world.size()) {
+                getConfig().set("blacklist_world", default_blacklist_world);
                 getFileSetting().save("config.yml");
             }
             if (default_user_help.size() != current_user_help.size()) {
                 getConfig().set("help.user", default_user_help);
                 getFileSetting().save("config.yml");
             }
+            getConfig().set("version", getPluginConfigVersion());
             try {
                 ConfigUpdater.update(MiningContest.getMiningContest(), "config.yml", configFile, "points", "reward.top", "times");
                 MiningContest.getMiningContest().getLogger().log(Level.WARNING, "Your config have been updated successful");
