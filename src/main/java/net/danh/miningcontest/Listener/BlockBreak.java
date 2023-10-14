@@ -1,6 +1,8 @@
 package net.danh.miningcontest.Listener;
 
 import net.danh.miningcontest.Data.PlayerData;
+import net.danh.miningcontest.Manager.FileManager;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,8 +15,13 @@ public class BlockBreak implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onBreak(BlockBreakEvent e) {
-        if (!isPlacedBlock(e.getBlock())) {
-            PlayerData.addMinePoints(e.getPlayer(), e.getBlock().getType().name());
+        World world = e.getPlayer().getLocation().getWorld();
+        if (world != null) {
+            if (!FileManager.getConfig().getStringList("blacklist_world").contains(world.getName())) {
+                if (!isPlacedBlock(e.getBlock())) {
+                    PlayerData.addMinePoints(e.getPlayer(), e.getBlock().getType().name());
+                }
+            }
         }
     }
 
