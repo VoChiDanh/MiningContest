@@ -5,6 +5,7 @@ api-version: '1.13'
 authors: [ VoChiDanh ]
 softdepend:
   - WorldGuard
+  - PlaceholderAPI
 commands:
   MiningContest:
     description: MiningContest Command

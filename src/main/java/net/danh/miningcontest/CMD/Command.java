@@ -6,7 +6,6 @@ import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
 import net.danh.miningcontest.Manager.NumberManager;
-import net.danh.miningcontest.MiningContest;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
@@ -19,27 +18,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static net.danh.miningcontest.Contest.Mining.data;
-import static net.danh.miningcontest.Contest.Mining.dataI;
 
 public class Command extends CMDBase {
     public Command() {
         super("MiningContest");
     }
 
-    private void checkTimes(CommandSender c) {
-        String start = ChatManager.colorize(FileManager.getConfig().getString("message.contest_start_time"));
-        String end = ChatManager.colorize(FileManager.getConfig().getString("message.contest_end_time"));
-        if (data.get("start") && (dataI.get("end") > 0)) {
-            c.sendMessage(end.replace("#time#", MiningContest.getTime(dataI.get("end"))));
-        } else {
-            c.sendMessage(start.replace("#time#", MiningContest.getTime(dataI.get("start"))));
-        }
-    }
-
     @Override
     public void execute(CommandSender c, String[] args) {
         if (args.length == 0) {
-            checkTimes(c);
+            PlayerData.checkTimes(c);
         }
         if (args.length >= 3 && args.length <= 4) {
             if (c.hasPermission("mc.admin")) {

@@ -8,6 +8,7 @@ import net.danh.miningcontest.Listener.BlockPlace;
 import net.danh.miningcontest.Listener.JoinQuit;
 import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
+import net.danh.miningcontest.PlaceholderAPI.MC_PAPI;
 import net.xconfig.bukkit.model.SimpleConfigurationManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -57,6 +58,10 @@ public final class MiningContest extends JavaPlugin {
         new Command();
         for (Player p : Bukkit.getOnlinePlayers()) {
             PlayerData.points.put(p.getName(), 0);
+        }
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new MC_PAPI().register();
         }
         Mining.data.put("start", false);
         Mining.data.put("end", false);
