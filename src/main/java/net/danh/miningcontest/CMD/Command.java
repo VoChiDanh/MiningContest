@@ -38,7 +38,7 @@ public class Command extends CMDBase {
                         if (data.get("start")) {
                             if (args[0].equalsIgnoreCase("add")) {
                                 PlayerData.points.replace(p.getName(), PlayerData.points.get(p.getName()) + amount);
-                                if (args[3].isEmpty() || !args[3].equalsIgnoreCase("s")) {
+                                if (args.length == 3) {
                                     c.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.add_points"))
                                             .replace("#points#", String.valueOf(amount))
                                             .replace("#player#", p.getName())));
@@ -48,7 +48,7 @@ public class Command extends CMDBase {
                                 int new_int = PlayerData.points.get(p.getName()) - amount;
                                 if (new_int >= 0) {
                                     PlayerData.points.replace(p.getName(), new_int);
-                                    if (args[3].isEmpty() || !args[3].equalsIgnoreCase("s")) {
+                                    if (args.length == 3) {
                                         c.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.remove_points"))
                                                 .replace("#points#", String.valueOf(amount))
                                                 .replace("#player#", p.getName())));
