@@ -20,13 +20,22 @@ public class PlayerData {
     }
 
     public static String time() {
-        String start = ChatManager.colorize(FileManager.getConfig().getString("message.contest_start_time"));
-        String end = ChatManager.colorize(FileManager.getConfig().getString("message.contest_end_time"));
+        String start = ChatManager.colorizewp(FileManager.getConfig().getString("message.contest_start_time"));
+        String end = ChatManager.colorizewp(FileManager.getConfig().getString("message.contest_end_time"));
         if (data.get("start") && (dataI.get("end") > 0)) {
-            return ChatManager.colorize(end.replace("#time#", MiningContest.getTime(dataI.get("end"))));
+            return ChatManager.colorizewp(end.replace("#time#", MiningContest.getTime(dataI.get("end"))));
         } else {
-            return ChatManager.colorize(start.replace("#time#", MiningContest.getTime(dataI.get("start"))));
+            return ChatManager.colorizewp(start.replace("#time#", MiningContest.getTime(dataI.get("start"))));
         }
+    }
+
+    public static int getMinePoints(Player p) {
+        if (Mining.data.get("start")) {
+            if (PlayerData.points.containsKey(p.getName()))
+                return points.getOrDefault(p.getName(), 0);
+            else return 0;
+        }
+        return 0;
     }
 
     public static void addMinePoints(Player p, String block_type) {
