@@ -1,9 +1,35 @@
 blacklist_world:
   - example_world
+bossbar:
+  enable: true
+  title: "&aThe contest will end in #second# second(s)"
+  bar_color: GREEN
+  bar_style: SOLID
+  bar_per_percent:
+    76to100:
+      percent: 0.76to1
+      title: "&aThe contest will end in #second# second(s)"
+      color: GREEN
+      style: SOLID
+    51to75:
+      percent: 0.51to0.75
+      title: "&bThe contest will end in #second# second(s)"
+      color: BLUE
+      style: SOLID
+    26to50:
+      percent: 0.26to0.5
+      title: "&6The contest will end in #second# second(s)"
+      color: YELLOW
+      style: SOLID
+    0to25:
+      percent: 0to.25
+      title: "&cThe contest will end in #second# second(s)"
+      color: RED
+      style: SOLID
 message:
   contest_start: "&bThe Block Mining Contest Begins!"
   contest_end: "&cThe block mining contest has ended!"
-  contest_countdown: "&eThe contest will end in #giay# second"
+  contest_countdown: "&eThe contest will end in #second# second"
   contest_pre_join: "&eThere is a block mining contest going on, start mining from now!"
   contest_top: "&aPlayer #name# - #block# Points"
   contest_not_start: "&cThe contest hasn't started yet"

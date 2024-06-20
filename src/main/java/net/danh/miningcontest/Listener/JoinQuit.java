@@ -8,11 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class JoinQuit implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
+    public void onJoin(@NotNull PlayerJoinEvent e) {
         Player p = e.getPlayer();
         if (Mining.data.get("start")) {
             if (!PlayerData.points.containsKey(p.getName())) {
@@ -23,6 +25,17 @@ public class JoinQuit implements Listener {
             if (PlayerData.points.containsKey(p.getName())) {
                 PlayerData.points.put(p.getName(), 0);
             }
+        }
+        if (Mining.bossBar != null) {
+            Mining.bossBar.addPlayer(p);
+        }
+    }
+
+    @EventHandler
+    public void onQuit(@NotNull PlayerQuitEvent e) {
+        Player p = e.getPlayer();
+        if (Mining.bossBar != null) {
+            Mining.bossBar.removePlayer(p);
         }
     }
 }

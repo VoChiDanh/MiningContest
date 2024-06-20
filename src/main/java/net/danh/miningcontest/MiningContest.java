@@ -108,6 +108,9 @@ public final class MiningContest extends JavaPlugin {
         Mining.setCancelled(true);
         for (Player p : Bukkit.getOnlinePlayers()) {
             PlayerData.points.put(p.getName(), 0);
+            if (Mining.bossBar != null) {
+                Mining.bossBar.removePlayer(p);
+            }
         }
     }
 
