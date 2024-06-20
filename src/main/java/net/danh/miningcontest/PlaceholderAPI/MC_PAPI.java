@@ -1,6 +1,7 @@
 package net.danh.miningcontest.PlaceholderAPI;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.danh.miningcontest.Contest.Mining;
 import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Manager.ChatManager;
 import net.danh.miningcontest.Manager.FileManager;
@@ -37,6 +38,8 @@ public class MC_PAPI extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onPlaceholderRequest(Player p, @NotNull String args) {
+        if (args.equalsIgnoreCase("isStarted"))
+            return String.valueOf(Mining.data.get("start"));
         if (args.equalsIgnoreCase("time"))
             return PlayerData.time();
         if (args.startsWith("top_")) {
