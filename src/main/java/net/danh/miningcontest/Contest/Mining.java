@@ -172,7 +172,7 @@ public class Mining {
                         }
                     }
                 }
-                if (counter <= 10) {
+                if (counter <= FileManager.getConfig().getInt("settings.time_countdown")) {
                     for (Player p : MiningContest.getMiningContest().getServer().getOnlinePlayers()) {
                         p.sendMessage(ChatManager.colorize(Objects.requireNonNull(FileManager.getConfig().getString("message.contest_countdown")).replaceAll("#second#", String.valueOf(counter))));
                     }
