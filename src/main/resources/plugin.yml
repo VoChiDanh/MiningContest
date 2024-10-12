@@ -6,6 +6,7 @@ authors: [ VoChiDanh ]
 softdepend:
   - WorldGuard
   - PlaceholderAPI
+  - ItemsAdder
 commands:
   MiningContest:
     description: MiningContest Command

@@ -118,5 +118,12 @@
 			<version>2.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>libs</groupId>
+			<artifactId>ItemsAdder</artifactId>
+			<version>v3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/ItemsAdder_3.6.4-release-3.jar</systemPath>
+		</dependency>
 	</dependencies>
 </project>

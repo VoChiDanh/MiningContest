@@ -1,7 +1,9 @@
 package net.danh.miningcontest.Listener;
 
+import dev.lone.itemsadder.api.CustomBlock;
 import net.danh.miningcontest.Data.PlayerData;
 import net.danh.miningcontest.Manager.FileManager;
+import net.danh.miningcontest.MiningContest;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -19,7 +21,14 @@ public class BlockBreak implements Listener {
         if (world != null) {
             if (!FileManager.getConfig().getStringList("blacklist_world").contains(world.getName())) {
                 if (!isPlacedBlock(e.getBlock())) {
-                    PlayerData.addMinePoints(e.getPlayer(), e.getBlock().getType().name());
+                    if (!isIABlock(e.getBlock()))
+                        PlayerData.addMinePoints(e.getPlayer(), e.getBlock().getType().name());
+                    else {
+                        CustomBlock customBlock = CustomBlock.byAlreadyPlaced(e.getBlock());
+                        if (customBlock != null) {
+                            PlayerData.addMinePoints(e.getPlayer(), customBlock.getId());
+                        }
+                    }
                 }
             }
         }
@@ -31,5 +40,10 @@ public class BlockBreak implements Listener {
             return value.asBoolean();
         }
         return false;
+    }
+
+    public boolean isIABlock(Block b) {
+        return MiningContest.getMiningContest().getServer().getPluginManager().getPlugin("ItemsAdder") != null
+                && CustomBlock.byAlreadyPlaced(b) != null;
     }
 }
