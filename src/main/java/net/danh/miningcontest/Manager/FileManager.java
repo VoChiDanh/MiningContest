@@ -16,7 +16,7 @@ import java.util.logging.Level;
 
 public class FileManager {
 
-    private static final int config_version = 2;
+    private static final int config_version = 3;
 
     public static SimpleConfigurationManager getFileSetting() {
         return SimpleConfigurationManager.get();

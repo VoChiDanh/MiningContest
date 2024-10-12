@@ -45,7 +45,7 @@ public class PlayerData {
                 if (FileManager.getConfig().contains("points." + block_type)) {
                     points = FileManager.getConfig().getInt("points." + block_type);
                 } else {
-                    points = 1;
+                    points = 0;
                 }
                 PlayerData.points.replace(p.getName(), PlayerData.points.get(p.getName()) + points);
             } else {
