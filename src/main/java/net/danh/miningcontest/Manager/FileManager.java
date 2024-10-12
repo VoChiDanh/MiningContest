@@ -61,15 +61,15 @@ public class FileManager {
             List<String> current_user_help = currentConfig.getStringList("help.user");
             List<String> current_blacklist_world = currentConfig.getStringList("blacklist_world");
             List<String> default_blacklist_world = defaultConfig.getStringList("blacklist_world");
-            if (default_admin_help.size() != current_admin_help.size()) {
+            if (current_admin_help.isEmpty()) {
                 getConfig().set("help.admin", default_admin_help);
                 getFileSetting().save("config.yml");
             }
-            if (default_blacklist_world.size() != current_blacklist_world.size()) {
+            if (current_blacklist_world.isEmpty()) {
                 getConfig().set("blacklist_world", default_blacklist_world);
                 getFileSetting().save("config.yml");
             }
-            if (default_user_help.size() != current_user_help.size()) {
+            if (current_user_help.isEmpty()) {
                 getConfig().set("help.user", default_user_help);
                 getFileSetting().save("config.yml");
             }
